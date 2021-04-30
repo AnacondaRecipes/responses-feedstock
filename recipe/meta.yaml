@@ -18,10 +18,11 @@ requirements:
   host:
     - python
     - pip
+    - pytest
   run:
-    - cookies
     - python
     - requests >=2.0
+    - urllib3 >=1.25.10
     - six
 
 test:
