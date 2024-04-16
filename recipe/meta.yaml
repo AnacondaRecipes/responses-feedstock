@@ -17,6 +17,7 @@ requirements:
   host:
     - python
     - pip
+    - wheel
   run:
     - python
     - requests >=2.30.0,<3.0
@@ -44,7 +45,7 @@ about:
   home: https://github.com/getsentry/responses
   dev_url: https://github.com/getsentry/responses
   doc_url: https://github.com/getsentry/responses
-  license: Apache 2.0
+  license: Apache-2.0
   license_family: APACHE
   license_file: LICENSE
   summary: A utility library for mocking out the `requests` Python library.
