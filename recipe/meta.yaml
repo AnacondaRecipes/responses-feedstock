@@ -1,40 +1,55 @@
 {% set name = "responses" %}
-{% set version = "0.13.3" %}
+{% set version = "0.25.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 18a5b88eb24143adbf2b4100f328a2f5bfa72fbdacf12d97d41f07c26c45553d
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 01ae6a02b4f34e39bffceb0fc6786b67a25eae919c6368d05eabc8d9576c2a66
 
 build:
   number: 0
-  noarch: python
-  script: '{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv '
+  script: '{{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vvv'
 
 requirements:
   host:
     - python
     - pip
-    - pytest
   run:
     - python
-    - requests >=2.0
-    - urllib3 >=1.25.10
-    - six
+    - requests >=2.30.0,<3.0
+    - urllib3 >=1.25.10,<3.0
+    - pyyaml
 
 test:
+  source_files:
+    - responses/tests
   imports:
     - responses
+  requires:
+    - pip
+    - pytest >=7.0.0
+    - pytest-asyncio
+    - pytest-httpserver
+    - tomli # [py<311]
+    - tomli-w
+  commands:
+    - pip check
+    # due to https://github.com/getsentry/responses/issues/706 we need to skip this test
+    - pytest --asyncio-mode=auto -vv -k "not test_callback_match_querystring_default_false"
 
 about:
   home: https://github.com/getsentry/responses
+  dev_url: https://github.com/getsentry/responses
+  doc_url: https://github.com/getsentry/responses
   license: Apache 2.0
   license_family: APACHE
   license_file: LICENSE
   summary: A utility library for mocking out the `requests` Python library.
+  description: | 
+    A utility library for mocking out the `requests` Python library.
 
 extra:
   recipe-maintainers:
