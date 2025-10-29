@@ -1,5 +1,5 @@
 {% set name = "responses" %}
-{% set version = "0.25.0" %}
+{% set version = "0.25.8" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 01ae6a02b4f34e39bffceb0fc6786b67a25eae919c6368d05eabc8d9576c2a66
+  sha256: 9374d047a575c8f781b94454db5cab590b6029505f488d12899ddb10a4af1cf4
 
 build:
   number: 0
@@ -15,10 +15,10 @@ build:
 
 requirements:
   host:
-    - python
     - pip
-    - setuptools
+    - python
     - wheel
+    - setuptools >=60
   run:
     - python
     - requests >=2.30.0,<3.0
@@ -27,7 +27,8 @@ requirements:
 
 test:
   source_files:
-    - responses/tests
+    # pyargs does not work, tests removed from site-package dir.
+    - responses
   imports:
     - responses
   requires:
