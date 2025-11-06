@@ -15,10 +15,10 @@ build:
 
 requirements:
   host:
-    - python
     - pip
-    - setuptools
+    - python
     - wheel
+    - setuptools >=60
   run:
     - python
     - requests >=2.30.0,<3.0
@@ -27,7 +27,8 @@ requirements:
 
 test:
   source_files:
-    - responses/tests
+    # pyargs does not work, tests removed from site-package dir.
+    - responses
   imports:
     - responses
   requires:
