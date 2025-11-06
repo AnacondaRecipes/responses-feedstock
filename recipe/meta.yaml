@@ -10,7 +10,7 @@ source:
   sha256: 9374d047a575c8f781b94454db5cab590b6029505f488d12899ddb10a4af1cf4
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
@@ -36,7 +36,7 @@ test:
     - pytest >=7.0.0
     - pytest-asyncio
     - pytest-httpserver
-    - tomli # [py<311]
+    - tomli  # [py<311]
     - tomli-w
   commands:
     - pip check
@@ -51,8 +51,9 @@ about:
   license_family: APACHE
   license_file: LICENSE
   summary: A utility library for mocking out the `requests` Python library.
-  description: | 
+  description: |
     A utility library for mocking out the `requests` Python library.
+
 
 extra:
   recipe-maintainers:
