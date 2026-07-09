@@ -1,17 +1,18 @@
 {% set name = "responses" %}
-{% set version = "0.25.8" %}
+{% set version = "0.26.2" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 9374d047a575c8f781b94454db5cab590b6029505f488d12899ddb10a4af1cf4
+  sha256: 9c9259b46a8349197edebf43cfa68a87e1a2802ef503ff8b2fecbabc0b45afd8
 
 build:
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
+  skip: true  # [py<38]
 
 requirements:
   host:
@@ -53,7 +54,6 @@ about:
   summary: A utility library for mocking out the `requests` Python library.
   description: |
     A utility library for mocking out the `requests` Python library.
-
 
 extra:
   recipe-maintainers:
